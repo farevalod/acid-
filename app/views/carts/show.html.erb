@@ -1,4 +1,27 @@
 <p id="notice"><%= notice %></p>
+<h1>Cart</h1>
+<div class="product">
+	<table>
+		<thead>
+			<th>Nombre</th>
+			<th>Precio</th>
+			<th>Unidades</th>
+			<th>Subtotal</th>
+			<th>Sacar del Carro</th>
+		</thead>
+		<tbody>
+			<% @cart.products.to_set.each do |p| %>
+				<tr>
+					<td><%= link_to p.name, p %></td>
+					<td><%= p.price %></td>
+					<td><%= @cart.products.select{|pr| pr.id==p.id}.count %></td>
+					<td><%= @cart.products.select{|pr| pr.id==p.id}.count * p.price %></td>
+					<td><%= link_to '[x]', product_path(p)+"/remove", :method => :post %></td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+	<h3>Total del Carro: $ <%=@cart.cart_total %></h3>
+</div>
 
-<%= link_to 'Edit', edit_cart_path(@cart) %> |
-<%= link_to 'Back', carts_path %>
+<%= link_to 'Back', products_path %>

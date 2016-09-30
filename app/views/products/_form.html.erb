@@ -26,6 +26,11 @@
     <%= f.text_field :description %>
   </div>
 
+  <div class="field">
+    <%= f.label :categories %>
+	<%= f.select :category_ids, options_for_select(Category.all.collect {|c| [c.name, c.id]}), {}, {:multiple => true} %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

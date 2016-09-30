@@ -1,18 +1,36 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: [:show, :edit, :update, :destroy, :add]
+  before_action :set_product, only: [:show, :edit, :update, :destroy, :add, :remove]
 
   # GET /products
   # GET /products.json
   def index
     @products = Product.all
-	@cart = current_user.cart
+	if not current_user.nil?
+		@cart = current_user.cart
+	else
+		new_user = User.new
+		new_user.email="guest"+rand(1024).to_s+"@ex.com"
+		new_user.password = "123456"
+		new_user.save
+		sign_in(new_user)
+		@cart = Cart.new
+		new_user.carts << @cart
+		@cart.save
+	end
   end
 
   # POST /products/1/add
   # POST /products/1/add.json
   def add
-	@cart = current_user.cart
+	@cart = current_user.carts.last
 	@cart.products << @product
+	redirect_to products_url
+  end
+
+  def remove
+	@cart = current_user.carts.last
+	@cart.products.delete(@product)
+	redirect_to products_url
   end
 #
   # GET /products/1
@@ -50,6 +68,7 @@ class ProductsController < ApplicationController
   # PATCH/PUT /products/1.json
   def update
     respond_to do |format|
+	  p product_params
       if @product.update(product_params)
         format.html { redirect_to @product, notice: 'Product was successfully updated.' }
         format.json { render :show, status: :ok, location: @product }
@@ -78,6 +97,6 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:name, :price, :description)
+      params.require(:product).permit(:name, :price, :description, category_ids: [])
     end
 end
