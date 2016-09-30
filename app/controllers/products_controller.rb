@@ -1,12 +1,20 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :set_product, only: [:show, :edit, :update, :destroy, :add]
 
   # GET /products
   # GET /products.json
   def index
     @products = Product.all
+	@cart = current_user.cart
   end
 
+  # POST /products/1/add
+  # POST /products/1/add.json
+  def add
+	@cart = current_user.cart
+	@cart.products << @product
+  end
+#
   # GET /products/1
   # GET /products/1.json
   def show
@@ -19,6 +27,7 @@ class ProductsController < ApplicationController
 
   # GET /products/1/edit
   def edit
+	  @categories = Category.all
   end
 
   # POST /products
