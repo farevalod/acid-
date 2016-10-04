@@ -15,10 +15,11 @@
 <i class="fa fa-star" aria-hidden="true"></i>
 <i class="fa fa-star" aria-hidden="true"></i>
 <i class="fa fa-star" aria-hidden="true"></i>
+5.0 <small>(1 voto)</small>
 </span>
 
 <div class="price" style="font-size:24px;font-weight:700;line-height:32px;color:#e62">
-  US $<%= @product.price %>
+  US $<%= @product.price %><small style="color:#aaa;font-size:12px"> / unidad</small>
 </div>
 
 <%= link_to product_path(@product)+"/add", :method => :post do%>
@@ -28,15 +29,15 @@
 	</button>
 <% end %>
 <div>
-  <strong>Description:</strong>
+  <strong>Descripcion del producto:</strong>
   <%= @product.description %>
 </div>
 <div>
-  <strong>Categories:</strong>
+  <strong>Categorias:</strong>
   <%= @product.categories.map{|c| c.name}.join(", ") %>
 </div>
 
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
+<%= link_to 'Editar', edit_product_path(@product) %> |
+<%= link_to 'Volver', products_path %>
 </span>
 </div>

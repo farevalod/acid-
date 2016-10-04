@@ -12,26 +12,26 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+    <%= f.label :name, "Nombre" %>
+    <%= f.text_field :name, required: true %>
   </div>
 
   <div class="field">
-    <%= f.label :price %>
-    <%= f.text_field :price %>
+    <%= f.label :price, "Precio" %>
+    <%= f.text_field :price, required: true %>
   </div>
 
   <div class="field">
-    <%= f.label :description %>
+    <%= f.label :description, "Descripcion" %>
     <%= f.text_field :description %>
   </div>
 
   <div class="field">
-    <%= f.label :categories %>
+    <%= f.label :categories, "Categorias" %>
 	<%= f.select :category_ids, options_for_select(Category.all.collect {|c| [c.name, c.id]}), {}, {:multiple => true} %>
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Guardar Producto"%>
   </div>
 <% end %>
