@@ -28,3 +28,13 @@
 <br>
 
 <%= link_to 'New Product', new_product_path %>
+
+
+<h2>Importar Productos</h2>
+
+<%= form_tag import_products_path, multipart: true do %>
+	<%= file_field_tag :file %>
+	<%= submit_tag "Importar" %>
+<% end %>
+
+<%= link_to 'New Product', new_product_path %>

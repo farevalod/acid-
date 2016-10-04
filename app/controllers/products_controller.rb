@@ -79,6 +79,11 @@ class ProductsController < ApplicationController
     end
   end
 
+  def import
+	Product.import(params[:file])
+	redirect_to root_url, notice: "Productos importados."
+  end
+
   # DELETE /products/1
   # DELETE /products/1.json
   def destroy

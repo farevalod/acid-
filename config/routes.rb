@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   devise_for :users
   resources :carts
   resources :users
-  resources :products
+  resources :products do
+	  collection { post :import }
+  end
   post '/products/:id/add', to: 'products#add'
   post '/products/:id/remove', to: 'products#remove'
   root to: "products#index"
