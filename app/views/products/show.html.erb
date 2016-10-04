@@ -34,7 +34,7 @@
 </div>
 <div>
   <strong>Categorias:</strong>
-  <%= @product.categories.map{|c| c.name}.join(", ") %>
+  <%= @product.categories.map{|c| c.name.titleize}.join(", ") %>
 </div>
 
 <%= link_to 'Editar', edit_product_path(@product) %> |

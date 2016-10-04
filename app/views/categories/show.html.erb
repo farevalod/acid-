@@ -7,10 +7,10 @@
 			<div class="cat" style="line-height:28px">
 				<% if cat.id == @category.id %>
 					<strong>
-					<%= link_to cat.name, cat %>
+					<%= link_to cat.name.titleize, cat %>
 					</strong>
 				<% else %>
-					<%= link_to cat.name, cat %>
+					<%= link_to cat.name.titleize, cat %>
 				<% end %>
 			</div>
 		<% end %>

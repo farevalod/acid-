@@ -5,7 +5,7 @@
 		<h4>Categorias</h4>
 		<% Category.all.each do |cat| %>
 			<div class="cat" style="line-height:28px">
-				<%= link_to cat.name, cat %>
+				<%= link_to cat.name.titleize, cat %>
 			</div>
 		<% end %>
 
