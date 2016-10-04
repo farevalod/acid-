@@ -10,7 +10,7 @@ class Product < ApplicationRecord
 		row = Hash[[header, spreadsheet.row(i)].transpose]
 		product = find_by_id(row["id"]) || new
 		product.attributes = row.to_hash
-		if not product.name.nil? and not product.price.nil?
+		if (not product.name.blank?) and (not product.price.blank?)
 			product.save!
 		end
 	  end
