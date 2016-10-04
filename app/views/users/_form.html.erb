@@ -13,8 +13,21 @@
 
   <div class="field">
     <%= f.label :email %>
-    <%= f.text_field :email %>
+	<% if user.email =~ /ex/ %>
+		<%= f.text_field :email, value: nil %>
+	<% else %>
+		<%= f.text_field :email %>
+	<% end %>
   </div>
+  <div class="field">
+    <%= f.label :password %>
+	<%= f.password_field :password %>
+  </div>
+  <div class="field">
+    <%= f.label :password_confirmation %>
+	<%= f.password_field :password_confirmation %>
+  </div>
+
 
   <div class="actions">
     <%= f.submit %>

@@ -11,6 +11,12 @@
   <body>
 	<div style="margin-left:500px">
 		<%= link_to "("+current_user.carts.last.products.count.to_s+")", current_user.carts.last %>
+		|
+		<% if current_user.email =~ /ex/ %>
+			<%= link_to "Registrate", edit_user_path(current_user) %>
+		<% else %>
+			<%= link_to current_user.email, edit_user_path(current_user) %>
+		<% end %>
 	</div>
     <%= yield %>
   </body>
