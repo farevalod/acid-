@@ -10,6 +10,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+	  redirect_to @user.carts.last
   end
 
   # GET /users/new

@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  resources :categories
+  resources :categories, except: [:index]
   devise_for :users
-  resources :carts
-  resources :users
+  resources :carts, only: [:show, :buy]
+  resources :users, only: [:edit, :update, :show]
   resources :products do
 	  collection { post :import }
   end
