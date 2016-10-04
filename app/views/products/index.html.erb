@@ -1,40 +1,52 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Products</h1>
+<div class="row">
+	<div class="col-md-2">
+		<h4>Categorias</h4>
+		<% Category.all.each do |cat| %>
+			<div class="cat" style="line-height:28px">
+				<%= link_to cat.name, cat %>
+			</div>
+		<% end %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Price</th>
-      <th>Description</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+	</div>
+	<div class="col-md-10">
+		<div class="container">
     <% @products.each do |product| %>
-      <tr>
-        <td><%= product.name %></td>
-        <td><%= product.price %></td>
-        <td><%= product.description %></td>
-        <td><%= link_to 'Details', product %></td>
-		<td><%= link_to 'Add to Cart', product_path(product)+"/add", :method => :post %></td>
-      </tr>
+		<div class="col-md-3">
+			<%= link_to product do %>
+			<%= image_tag "http://placehold.it/220x220", size: "220x220" %>
+			<h3><%= product.name %></h3>
+			<span class="price" style="font-size:16px;font-weight:700;line-height:20px;color:#e62">US $<%= product.price %></span>
+				<%= link_to product_path(product)+"/add", :method => :post do%>
+					<span style="padding-top:45px;float:right;margin-right:45px">
+						<i class="fa fa-cart-plus" aria-hidden="true"></i>
+						Agregar al carro
+					</span>
+				<% end %>
+			<% end %>
+	    </div>
     <% end %>
-  </tbody>
-</table>
+	</div>
+	</div>
 
 <br>
-
-<%= link_to 'New Product', new_product_path %>
-
-
-<h2>Importar Productos</h2>
+</div>
+<hr>
+<div class="row">
+<div class="col-md-offset-2 col-md-2">
+<h4>Importar Productos</h4>
 
 <%= form_tag import_products_path, multipart: true do %>
 	<%= file_field_tag :file %>
 	<%= submit_tag "Importar" %>
 <% end %>
 
-<%= link_to 'New Product', new_product_path %>
+<hr>
+</div>
+<div class="row">
+<h4>
+	<%= link_to 'Nuevo Producto', new_product_path %>
+</h4>
+</div>
+</div>

@@ -12,6 +12,11 @@ class CartsController < ApplicationController
   def show
   end
 
+  def buy
+	current_user.carts << Cart.new
+	redirect_to :root
+  end
+
   # GET /carts/new
   def new
     @cart = Cart.new

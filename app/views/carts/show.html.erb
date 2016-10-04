@@ -1,27 +1,28 @@
 <p id="notice"><%= notice %></p>
-<h1>Cart</h1>
-<div class="product">
-	<table>
-		<thead>
-			<th>Nombre</th>
-			<th>Precio</th>
-			<th>Unidades</th>
-			<th>Subtotal</th>
-			<th>Sacar del Carro</th>
-		</thead>
-		<tbody>
-			<% @cart.products.to_set.each do |p| %>
-				<tr>
-					<td><%= link_to p.name, p %></td>
-					<td><%= p.price %></td>
-					<td><%= @cart.products.select{|pr| pr.id==p.id}.count %></td>
-					<td><%= @cart.products.select{|pr| pr.id==p.id}.count * p.price %></td>
-					<td><%= link_to '[x]', product_path(p)+"/remove", :method => :post %></td>
-				</tr>
+<h2>Tu Carro
+	<small>
+		<%= "("+pluralize(@cart.products.count, "Articulo")+")" %>
+	</small>
+</h2>
+<% @cart.products.to_set.each do |p| %>
+	<div class="col-md-12 product" style="margin-bottom:15px">
+		<div class="col-md-2"><img src="http://placehold.it/80x80"></div>
+		<div class="col-md-2"><%= link_to p.name, p %></div>
+		<div class="col-md-2"><%= @cart.products.select{|pr| pr.id==p.id}.count %></div>
+		<div class="col-md-2" style="font-size:16px;font-weight:700;color:#333">US $<%= p.price %><small style="color:#aaa;font-size:12px"> / unidad</small></div>
+		<div class="col-md-2">
+			<%= link_to product_path(p)+"/remove", :method => :post do %>
+				<i class="fa fa-remove" aria-hidden="true"></i>
 			<% end %>
-		</tbody>
-	</table>
-	<h3>Total del Carro: $ <%=@cart.cart_total %></h3>
+		</div>
+	</div>
+<% end %>
+<div class="col-md-4" style="float:right">
+	<h3>Total del Carro: <strong>US $<%=@cart.cart_total %></strong></h3>
+	<%= link_to cart_path(@cart)+"/buy", :method => :post do %>
+		<button class="btn btn-success">
+			Comprar
+		</button>
+	<% end %>
+<hr>
 </div>
-
-<%= link_to 'Back', products_path %>

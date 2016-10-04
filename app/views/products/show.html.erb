@@ -1,23 +1,42 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @product.name %>
-</p>
+<div class="col-md-6">
+	<img src="http://placehold.it/500x550">
+</div>
 
-<p>
-  <strong>Price:</strong>
-  <%= @product.price %>
-</p>
+<div class="col-md-6">
+<span style="line-height:55px">
+  <h3>
+	  <%= @product.name.titleize %>
+  </h3>
+<span style="color:#f90">
+<i class="fa fa-star" aria-hidden="true"></i>
+<i class="fa fa-star" aria-hidden="true"></i>
+<i class="fa fa-star" aria-hidden="true"></i>
+<i class="fa fa-star" aria-hidden="true"></i>
+<i class="fa fa-star" aria-hidden="true"></i>
+</span>
 
-<p>
+<div class="price" style="font-size:24px;font-weight:700;line-height:32px;color:#e62">
+  US $<%= @product.price %>
+</div>
+
+<%= link_to product_path(@product)+"/add", :method => :post do%>
+	<button class="btn btn-danger">
+		<i class="fa fa-cart-plus" aria-hidden="true"></i>
+		Agregar al carro
+	</button>
+<% end %>
+<div>
   <strong>Description:</strong>
   <%= @product.description %>
-</p>
-<p>
+</div>
+<div>
   <strong>Categories:</strong>
   <%= @product.categories.map{|c| c.name}.join(", ") %>
-</p>
+</div>
 
 <%= link_to 'Edit', edit_product_path(@product) %> |
 <%= link_to 'Back', products_path %>
+</span>
+</div>
