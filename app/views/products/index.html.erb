@@ -12,7 +12,10 @@
 	</div>
 	<div class="col-md-10">
 		<div class="container">
-    <% @products.each do |product| %>
+    <% @products.each_with_index do |product,idx| %>
+		<% if idx%3 == 0 %>
+			<div class="row" style="margin-bottom:30px">
+		<% end %>
 		<div class="col-md-3">
 			<%= link_to product do %>
 			<%= image_tag "http://placehold.it/220x220", size: "220x220" %>
@@ -26,7 +29,10 @@
 				<% end %>
 			<% end %>
 	    </div>
-    <% end %>
+   		<% if idx%3 == 2 %>
+			</div>
+		<% end %>
+	 <% end %>
 	</div>
 	</div>
 
