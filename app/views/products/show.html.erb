@@ -9,17 +9,17 @@
 		<h3>
 			<%= @product.name.titleize %>
 		</h3>
-		<span style="color:#f90">
+		<span style="color:#f90;font-weight:700">
 			<i class="fa fa-star" aria-hidden="true"></i>
 			<i class="fa fa-star" aria-hidden="true"></i>
 			<i class="fa fa-star" aria-hidden="true"></i>
 			<i class="fa fa-star" aria-hidden="true"></i>
 			<i class="fa fa-star" aria-hidden="true"></i>
-			5.0 <small>(1 voto)</small>
+			5.0 <small style="color:#aaa;font-weight:300">(1 voto)</small>
 		</span>
 
 		<div class="price" style="font-size:24px;font-weight:700;line-height:32px;color:#e62">
-			US <%= number_to_currency(@product.price, precision: 2) %><small style="color:#aaa;font-size:12px"> / unidad</small>
+			US <%= number_to_currency(@product.price, precision: 2) %><small style="color:#aaa;font-size:12px;font-weight:300"> / unidad</small>
 		</div>
 
 		<%= link_to product_path(@product)+"/add", :method => :post do%>
