@@ -7,13 +7,15 @@
 <% @cart.products.to_set.each do |p| %>
 	<div class="col-md-12 product" style="margin-bottom:15px">
 		<div class="col-md-2"><img src="http://placehold.it/80x80"></div>
-		<div class="col-md-2"><%= link_to p.name.titleize, p %></div>
-		<div class="col-md-2"><%= @cart.products.select{|pr| pr.id==p.id}.count %></div>
-		<div class="col-md-2" style="font-size:16px;font-weight:700;color:#333">US $<%= p.price %><small style="color:#aaa;font-size:12px"> / unidad</small></div>
-		<div class="col-md-2">
-			<%= link_to product_path(p)+"/remove", :method => :post do %>
-				<i class="fa fa-remove" aria-hidden="true"></i>
-			<% end %>
+		<div class="product-text" style="margin-top:30px">
+			<div class="col-md-2"><%= link_to p.name.titleize, p %></div>
+			<div class="col-md-2"><%= @cart.products.select{|pr| pr.id==p.id}.count %></div>
+			<div class="col-md-2" style="font-size:16px;font-weight:700;color:#333">US $<%= p.price %><small style="color:#aaa;font-size:12px"> / unidad</small></div>
+			<div class="col-md-2">
+				<%= link_to product_path(p)+"/remove", :method => :post do %>
+					<i class="fa fa-remove" aria-hidden="true"></i>
+				<% end %>
+			</div>
 		</div>
 	</div>
 <% end %>
