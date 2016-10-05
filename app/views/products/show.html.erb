@@ -19,7 +19,7 @@
 		</span>
 
 		<div class="price" style="font-size:24px;font-weight:700;line-height:32px;color:#e62">
-			US $<%= @product.price %><small style="color:#aaa;font-size:12px"> / unidad</small>
+			US <%= number_to_currency(@product.price, precision: 2) %><small style="color:#aaa;font-size:12px"> / unidad</small>
 		</div>
 
 		<%= link_to product_path(@product)+"/add", :method => :post do%>

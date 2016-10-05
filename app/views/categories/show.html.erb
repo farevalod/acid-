@@ -27,7 +27,7 @@
 						<%= link_to product do %>
 							<%= image_tag "http://placehold.it/220x220", size: "220x220" %>
 							<h3><%= product.name.titleize %></h3>
-							<span class="price" style="font-size:16px;font-weight:700;line-height:20px;color:#e62">US $<%= product.price %><small style="color:#aaa;font-size:12px"> / unidad</small></span>
+							<span class="price" style="font-size:16px;font-weight:700;line-height:20px;color:#e62">US <%= number_to_currency(product.price, precision: 2) %><small style="color:#aaa;font-size:12px"> / unidad</small></span>
 							<%= link_to product_path(product)+"/add", :method => :post do%>
 								<span style="padding-top:30px;float:right;margin-right:45px">
 									<i class="fa fa-cart-plus" aria-hidden="true"></i>
