@@ -34,9 +34,7 @@
 				<span class="navbar-right" style="margin-top:13px;margin-right:13px">
 					<%= link_to current_user.carts.last do %>
 						<i class="fa fa-shopping-cart" aria-hidden="true"></i>
-						<span class="label label-danger">
-							<%= "("+current_user.carts.last.products.count.to_s+")" %>
-						</span>
+						<span class="label label-danger"><%= current_user.carts.last.products.count.to_s %></span>
 					<% end %>
 					<span style="margin-left:15px">
 						<% if current_user.email =~ /ex/ %>
