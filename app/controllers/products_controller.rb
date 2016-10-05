@@ -30,7 +30,7 @@ class ProductsController < ApplicationController
 	def remove
 		@cart = current_user.carts.last
 		@cart.products.delete(@product)
-		redirect_to products_url
+		redirect_to current_user.carts.last
 	end
 	#
 	# GET /products/1

@@ -4,27 +4,40 @@
 		<%= "("+pluralize(@cart.products.count, "Articulo")+")" %>
 	</small>
 </h2>
-<% @cart.products.to_set.each do |p| %>
+<% if @cart.products.empty? %>
+	<div class="col-md-8 col-md-offset-3">
+		<h3>Tu carro esta vacio. Agrega un <%= link_to "producto!", products_url %></h3>
+	</div>
+<% else %>
 	<div class="col-md-12 product" style="margin-bottom:15px">
-		<div class="col-md-2"><img src="http://placehold.it/80x80"></div>
-		<div class="product-text" style="margin-top:30px">
-			<div class="col-md-2"><%= link_to p.name.titleize, p %></div>
-			<div class="col-md-2"><%= @cart.products.select{|pr| pr.id==p.id}.count %></div>
-			<div class="col-md-2" style="font-size:16px;font-weight:700;color:#333">US <%= number_to_currency(p.price, precision: 2) %><small style="color:#aaa;font-size:12px"> / unidad</small></div>
-			<div class="col-md-2">
-				<%= link_to product_path(p)+"/remove", :method => :post do %>
-					<i class="fa fa-remove" aria-hidden="true"></i>
-				<% end %>
-			</div>
+		<div class="product-header" style="color:#aaa">
+			<div class="col-md-3">Nombre del producto</div>
+			<div class="col-md-2">Cantidad</div>
+			<div class="col-md-2">Precio</div>
+			<div class="col-md-2">Eliminar</div>
 		</div>
 	</div>
-<% end %>
-<div class="col-md-4" style="float:right">
-	<h3>Total del Carro: <strong>US <%= number_to_currency(@cart.cart_total, precision: 2) %></strong></h3>
-	<%= link_to cart_path(@cart)+"/buy", :method => :post do %>
-		<button class="btn btn-success">
-			Comprar
-		</button>
+	<% @cart.products.to_set.each do |p| %>
+		<div class="col-md-12 product" style="margin-bottom:15px">
+			<div class="col-md-1"><img src="http://placehold.it/80x80"></div>
+			<div class="product-text" style="margin-top:30px">
+				<div class="col-md-2"><%= link_to p.name.titleize, p %></div>
+				<div class="col-md-2"><%= @cart.products.select{|pr| pr.id==p.id}.count %></div>
+				<div class="col-md-2" style="font-size:16px;font-weight:700;color:#333">US <%= number_to_currency(p.price, precision: 2) %><small style="color:#aaa;font-size:12px"> / unidad</small></div>
+				<div class="col-md-2">
+					<%= link_to product_path(p)+"/remove", :method => :post do %>
+						<i class="fa fa-remove" aria-hidden="true"></i>
+					<% end %>
+				</div>
+			</div>
+		</div>
 	<% end %>
-	<hr>
-</div>
+	<div class="col-md-4" style="float:right">
+		<h3 style="float:right">Total del Carro: <strong style="color:#e62">US <%= number_to_currency(@cart.cart_total, precision: 2) %></strong></h3>
+		<%= link_to cart_path(@cart)+"/buy", :method => :post do %>
+			<button class="btn btn-success" style="float:right;background:#e62;color:#fff;font-weight:700">
+				Comprar todo
+			</button>
+		<% end %>
+	</div>
+<% end %>
