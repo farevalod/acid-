@@ -7,7 +7,7 @@
 			<div class="cat" style="line-height:28px">
 				<% if cat.id == @category.id %>
 					<strong>
-					<%= link_to cat.name.titleize, cat %>
+						<%= link_to cat.name.titleize, cat %>
 					</strong>
 				<% else %>
 					<%= link_to cat.name.titleize, cat %>
@@ -18,28 +18,28 @@
 	</div>
 	<div class="col-md-10">
 		<div class="container">
-    <% @category.products.each_with_index do |product,idx| %>
-		<% if idx%3 == 0 %>
-			<div class="row" style="margin-bottom:30px">
-		<% end %>
+			<% @category.products.each_with_index do |product,idx| %>
+				<% if idx%3 == 0 %>
+					<div class="row" style="margin-bottom:30px">
+					<% end %>
 
-		<div class="col-md-3">
-			<%= link_to product do %>
-			<%= image_tag "http://placehold.it/220x220", size: "220x220" %>
-			<h3><%= product.name.titleize %></h3>
-			<span class="price" style="font-size:16px;font-weight:700;line-height:20px;color:#e62">US $<%= product.price %><small style="color:#aaa;font-size:12px"> / unidad</small></span>
-				<%= link_to product_path(product)+"/add", :method => :post do%>
-					<span style="padding-top:30px;float:right;margin-right:45px">
-						<i class="fa fa-cart-plus" aria-hidden="true"></i>
-						Agregar al carro
-					</span>
+					<div class="col-md-3">
+						<%= link_to product do %>
+							<%= image_tag "http://placehold.it/220x220", size: "220x220" %>
+							<h3><%= product.name.titleize %></h3>
+							<span class="price" style="font-size:16px;font-weight:700;line-height:20px;color:#e62">US $<%= product.price %><small style="color:#aaa;font-size:12px"> / unidad</small></span>
+							<%= link_to product_path(product)+"/add", :method => :post do%>
+								<span style="padding-top:30px;float:right;margin-right:45px">
+									<i class="fa fa-cart-plus" aria-hidden="true"></i>
+									Agregar al carro
+								</span>
+							<% end %>
+						<% end %>
+					</div>
+					<% if idx%3 == 2 %>
+						</div>
+					<% end %>
 				<% end %>
-			<% end %>
-	    </div>
-   		<% if idx%3 == 2 %>
-			</div>
-		<% end %>
-    <% end %>
-	</div>
+		</div>
 	</div>
 </div>

@@ -5,39 +5,39 @@
 </div>
 
 <div class="col-md-6">
-<span style="line-height:55px">
-  <h3>
-	  <%= @product.name.titleize %>
-  </h3>
-<span style="color:#f90">
-<i class="fa fa-star" aria-hidden="true"></i>
-<i class="fa fa-star" aria-hidden="true"></i>
-<i class="fa fa-star" aria-hidden="true"></i>
-<i class="fa fa-star" aria-hidden="true"></i>
-<i class="fa fa-star" aria-hidden="true"></i>
-5.0 <small>(1 voto)</small>
-</span>
+	<span style="line-height:55px">
+		<h3>
+			<%= @product.name.titleize %>
+		</h3>
+		<span style="color:#f90">
+			<i class="fa fa-star" aria-hidden="true"></i>
+			<i class="fa fa-star" aria-hidden="true"></i>
+			<i class="fa fa-star" aria-hidden="true"></i>
+			<i class="fa fa-star" aria-hidden="true"></i>
+			<i class="fa fa-star" aria-hidden="true"></i>
+			5.0 <small>(1 voto)</small>
+		</span>
 
-<div class="price" style="font-size:24px;font-weight:700;line-height:32px;color:#e62">
-  US $<%= @product.price %><small style="color:#aaa;font-size:12px"> / unidad</small>
-</div>
+		<div class="price" style="font-size:24px;font-weight:700;line-height:32px;color:#e62">
+			US $<%= @product.price %><small style="color:#aaa;font-size:12px"> / unidad</small>
+		</div>
 
-<%= link_to product_path(@product)+"/add", :method => :post do%>
-	<button class="btn btn-danger">
-		<i class="fa fa-cart-plus" aria-hidden="true"></i>
-		Agregar al carro
-	</button>
-<% end %>
-<div>
-  <strong>Descripcion del producto:</strong>
-  <%= @product.description %>
-</div>
-<div>
-  <strong>Categorias:</strong>
-  <%= @product.categories.map{|c| c.name.titleize}.join(", ") %>
-</div>
+		<%= link_to product_path(@product)+"/add", :method => :post do%>
+			<button class="btn btn-danger">
+				<i class="fa fa-cart-plus" aria-hidden="true"></i>
+				Agregar al carro
+			</button>
+		<% end %>
+		<div>
+			<strong>Descripcion del producto:</strong>
+			<%= @product.description %>
+		</div>
+		<div>
+			<strong>Categorias:</strong>
+			<%= @product.categories.map{|c| c.name.titleize}.join(", ") %>
+		</div>
 
-<%= link_to 'Editar', edit_product_path(@product) %> |
-<%= link_to 'Volver', products_path %>
-</span>
+		<%= link_to 'Editar', edit_product_path(@product) %> |
+		<%= link_to 'Volver', products_path %>
+	</span>
 </div>
