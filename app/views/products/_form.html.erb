@@ -11,23 +11,24 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :name, "Nombre" %>
-    <%= f.text_field :name, required: true %>
+    <%= f.text_field :name, required: true, class: "form-control", style: "width:300px" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :price, "Precio" %>
-    <%= f.text_field :price, required: true %>
+    <%= f.text_field :price, required: true, class: "form-control", style: "width:100px" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :description, "Descripcion" %>
-    <%= f.text_field :description %>
+    <%= f.text_area :description, class: "form-control", rows: 3, style: "width:600px" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :categories, "Categorias" %>
+	<br/>
 	<%= f.select :category_ids, options_for_select(Category.all.collect {|c| [c.name, c.id]}), {}, {:multiple => true} %>
   </div>
 
