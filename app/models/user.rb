@@ -8,8 +8,9 @@ class User < ApplicationRecord
   def cart
 	  @cart = self.carts.last
 	  if @cart.nil?
-		self.carts << Cart.new
-		@cart = self.carts.last
+		@cart = Cart.new
+		self.carts << @cart
 	  end
+	  @cart
   end
 end

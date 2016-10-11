@@ -5,32 +5,30 @@ class ProductsController < ApplicationController
 	# GET /products.json
 	def index
 		@products = Product.all
-		if not current_user.nil?
-			@cart = current_user.cart
-		else
-			new_user = User.new
-			new_user.email="guest"+rand(1024).to_s+"@ex.com"
-			new_user.password = "123456"
+		if current_user.nil?
+			new_user = User.new(email: "guest"+rand(1024).to_s+"@guest-domain.com", password: rand(36**8).to_s(36))
 			new_user.save
 			sign_in(new_user)
 			@cart = Cart.new
 			new_user.carts << @cart
 			@cart.save
+		else
+			@cart = current_user.cart
 		end
 	end
 
 	# POST /products/1/add
 	# POST /products/1/add.json
 	def add
-		@cart = current_user.carts.last
+		@cart = current_user.cart
 		@cart.products << @product
 		redirect_to products_url
 	end
 
 	def remove
-		@cart = current_user.carts.last
+		@cart = current_user.cart
 		@cart.products.delete(@product)
-		redirect_to current_user.carts.last
+		redirect_to current_user.cart
 	end
 	#
 	# GET /products/1

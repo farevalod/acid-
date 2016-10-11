@@ -32,12 +32,12 @@
 					<a class="navbar-brand" href="/">acid-mini-ecommerce</a>
 				</div>
 				<span class="navbar-right" style="margin-top:13px;margin-right:13px">
-					<%= link_to current_user.carts.last do %>
+					<%= link_to current_user.cart do %>
 						<i class="fa fa-shopping-cart" aria-hidden="true"></i>
-						<span class="label label-danger"><%= current_user.carts.last.products.count.to_s %></span>
+						<span class="label label-danger"><%= current_user.cart.products.count.to_s %></span>
 					<% end %>
 					<span style="margin-left:15px">
-						<% if current_user.email =~ /ex/ %>
+						<% if current_user.email =~ /guest/ %>
 							<%= link_to "Registrate", edit_user_path(current_user) %>
 						<% else %>
 							<%= link_to current_user.email, edit_user_path(current_user) %>

@@ -10,8 +10,8 @@ class CartsController < ApplicationController
 	# GET /carts/1
 	# GET /carts/1.json
 	def show
-		if @cart.id != current_user.carts.last.id
-			redirect_to :root
+		if @cart.id != current_user.cart.id
+			redirect_to :root, notice: "Carro incorrecto."
 		end
 	end
 

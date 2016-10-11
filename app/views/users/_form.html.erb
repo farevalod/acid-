@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= f.label :email %>
-	<% if user.email =~ /ex/ %>
+	<% if user.email =~ /guest/ %>
 		<%= f.text_field :email, value: nil %>
 	<% else %>
 		<%= f.text_field :email %>
