@@ -14,7 +14,7 @@
   <div class="form-group">
     <%= f.label :email %>
 	<% if user.email =~ /guest/ %>
-		<%= f.text_field :email, value: nil, style: "width:300px" %>
+		<%= f.text_field :email, value: nil, class: "form-control", style: "width:300px" %>
 	<% else %>
 		<%= f.text_field :email, class: "form-control", style: "width:300px" %>
 	<% end %>
